@@ -1,12 +1,16 @@
 import React from "react";
 
-const Movie = ({ title, rating, desc }) => {
+const Movie = (props) => {
   return (
-    <>
-      <h3>{title}</h3>
-      <p>{desc}</p>
-      <p>Rating: {rating}</p>
-    </>
+    <div className="movie">
+      <h3>{props.title}</h3>
+      <p className="movie-overview">Overview: {props.overview}</p>
+      <img
+        id="test"
+        src={"https://image.tmdb.org/t/p/w500" + props.poster_path}
+        alt={props.title}
+      />
+    </div>
   );
 };
 
