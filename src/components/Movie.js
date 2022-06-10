@@ -7,7 +7,10 @@ const Movie = (props) => {
       <p className="movie-overview">Overview: {props.overview}</p>
       <img
         id="test"
-        src={"https://image.tmdb.org/t/p/w500" + props.poster_path}
+        src={
+          props.poster_path &&
+          "https://image.tmdb.org/t/p/w500" + props.poster_path
+        }
         alt={props.title}
       />
     </div>
