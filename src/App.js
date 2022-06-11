@@ -7,27 +7,17 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${process.env.REACT_APP_SEARCH_API}&query=${searchTerm}`;
+
   useEffect(() => {
-    // fetch popular movies from API
-    const getPopularMovies = async () => {
-      const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_POPULAR}&page=1`;
-      const response = await fetch(POPULAR_API); // async func paused until request completes then response assigned object
-      const jsonData = await response.json(); // extract json object from fetch response
-      setMovies(jsonData.results);
-
-      // error handling
-      if (!response.ok) {
-        throw new Error(`HTTP error status: ${response.status}`);
-      }
-    };
-
-    getPopularMovies();
+    const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_POPULAR}&page=1`;
+    getMoviesReq(POPULAR_API);
   }, []); // only called on the first render/mount
 
-  const searchMovie = async () => {
-    const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${process.env.REACT_APP_SEARCH_API}&query=${searchTerm}`;
-    const response = await fetch(SEARCH_API);
-    const jsonData = await response.json();
+  // fetch popular movies from API
+  const getMoviesReq = async (API_URL) => {
+    const response = await fetch(API_URL); // async func paused until request completes then response assigned object
+    const jsonData = await response.json(); // extract json object from fetch response
     setMovies(jsonData.results);
 
     // error handling
@@ -41,8 +31,13 @@ function App() {
   };
 
   const handleSubmit = (e) => {
-    searchTerm && searchMovie();
+    searchTerm && getMoviesReq(SEARCH_API);
     e.preventDefault();
+  };
+
+  const handleSelect = (e) => {
+    const API_URL = `https://api.themoviedb.org/3/movie/${e.target.value}?api_key=${process.env.REACT_APP_POPULAR}&language=en-US&page=1`;
+    getMoviesReq(API_URL);
   };
 
   return (
@@ -52,7 +47,7 @@ function App() {
         change={handleChange}
         submit={handleSubmit}
       />
-      <SelectCategory />
+      <SelectCategory select={handleSelect} />
       <div className="movies">
         {movies.length > 0 &&
           movies.map((movie) => <Movie key={movie.id} {...movie} />)}
