@@ -12,37 +12,3 @@ code {
     monospace;
 }
 
-.movies {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.movie {
-  margin: 1rem;
-}
-
-.movie-overview {
-  width: 500px;
-}
-
-.select-button {
-  margin: 0 2rem;
-}
-
-.select-button:first-child {
-  margin-left: 0;
-}
-
-#search-form {
-  display: absolute;
-  float: right;
-  margin-right: 3rem;
-}
-
-#select-category {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-}

@@ -5,13 +5,13 @@ const SelectCategory = (props) => {
     <div>
       <ul id="select-category">
         <li className="select-button">
-          <button value="top_rated" onClick={props.select}>
-            Top Rated
+          <button value="now_playing" onClick={props.select}>
+            Now Playing
           </button>
         </li>
         <li className="select-button">
-          <button value="now_playing" onClick={props.select}>
-            Now Playing
+          <button value="top_rated" onClick={props.select}>
+            Top Rated
           </button>
         </li>
         <li className="select-button">

@@ -2,6 +2,7 @@ import Movie from "./components/Movie";
 import Search from "./components/Search";
 import SelectCategory from "./components/SelectCategory";
 import React, { useEffect, useState } from "react";
+import "./css/style.css";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -19,6 +20,7 @@ function App() {
     const response = await fetch(API_URL); // async func paused until request completes then response assigned object
     const jsonData = await response.json(); // extract json object from fetch response
     setMovies(jsonData.results);
+    console.log(jsonData.results);
 
     // error handling
     if (!response.ok) {
@@ -42,12 +44,14 @@ function App() {
 
   return (
     <>
-      <Search
-        searchQuery={searchTerm}
-        change={handleChange}
-        submit={handleSubmit}
-      />
-      <SelectCategory select={handleSelect} />
+      <div className="nav">
+        <SelectCategory select={handleSelect} />
+        <Search
+          searchQuery={searchTerm}
+          change={handleChange}
+          submit={handleSubmit}
+        />
+      </div>
       <div className="movies">
         {movies.length > 0 &&
           movies.map((movie) => <Movie key={movie.id} {...movie} />)}

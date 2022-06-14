@@ -1,0 +1,158 @@
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+body {
+  background: #0a0038;
+}
+
+.content {
+  overflow: hidden;
+}
+
+.movies {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.movie {
+  margin: 1.5rem;
+  width: 350px;
+  border-radius: 0.3rem;
+  background: #525cdf;
+  color: white;
+  position: relative;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+.movie img {
+  max-width: 100%;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.movie .movie-info {
+  position: absolute;
+  background-color: black;
+  -webkit-animation: fadeOut 1s;
+          animation: fadeOut 1s;
+  display: none;
+}
+
+.movie .rating {
+  float: left;
+  font-weight: bold;
+}
+
+.movie .info-btn {
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-style: none;
+  margin: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 1.5rem;
+  padding: 0.5rem 1.25rem;
+  opacity: 65%;
+}
+
+.movie .info-btn:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.movie-info-show {
+  position: absolute;
+  background-color: black;
+  padding: 1rem;
+  display: block;
+  border-radius: 0.3rem;
+  -webkit-animation: fadeIn 2s;
+          animation: fadeIn 2s;
+}
+
+.movie-info-show .hide-info-btn {
+  background-color: #525cdf;
+  color: white;
+  border-style: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.movie-info-show .hide-info-btn:hover {
+  cursor: pointer;
+  background-color: #2a36d8;
+}
+
+.title-sec {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #05001d;
+  margin-bottom: 2rem;
+}
+/*# sourceMappingURL=style.css.map */
