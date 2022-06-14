@@ -36,6 +36,14 @@
 
 body {
   background: #0a0038;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .content {
@@ -154,5 +162,65 @@ body {
   padding: 0.5rem;
   background-color: #05001d;
   margin-bottom: 2rem;
+}
+
+.select-button {
+  margin: 0 2rem;
+}
+
+.select-button button {
+  color: white;
+  background-color: #525cdf;
+  border-radius: 0.3rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.select-button button:hover {
+  background-color: #2a36d8;
+  cursor: pointer;
+}
+
+.select-button:first-child {
+  margin-left: 0;
+}
+
+#select-category {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#search-form input {
+  background-color: transparent;
+  border: 2px solid #b0b2d1;
+  border-radius: 0.3rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  color: white;
+}
+
+#search-form button {
+  margin: 0 2.5rem 0 0.5rem;
+  color: white;
+  background-color: #525cdf;
+  border-radius: 0.3rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+#search-form button:hover {
+  background-color: #2a36d8;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

@@ -20,6 +20,17 @@ $hoverColor: rgb(42, 54, 216);
 
 body {
     background: rgb(10, 0, 56);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }
 
 .content {
@@ -34,13 +45,13 @@ body {
 }
 
 .movie {
-  margin: 1.5rem;
-  width: 350px;
-  border-radius: 0.3rem;
-  background: $divColor;
-  color: $textColor;
-  position: relative;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+    margin: 1.5rem;
+    width: 350px;
+    border-radius: 0.3rem;
+    background: $divColor;
+    color: $textColor;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 
   img {
     max-width: 100%;
@@ -109,6 +120,56 @@ body {
     padding: 0.5rem;
     background-color: rgb(5, 0, 29);
     margin-bottom: 2rem;
+}
+
+.select-button {
+    margin: 0 2rem;
+    button {
+      color: white;
+      background-color: $divColor;
+      border-radius: 0.3rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: $hoverColor;
+      cursor: pointer;
+    }
+  }
+  
+.select-button:first-child {
+margin-left: 0;
+}
+
+#select-category {
+    list-style: none;
+    @include flex(row);
+}
+
+#search-form {
+    input {
+        background-color: transparent;
+        border: 2px solid #b0b2d1;
+        border-radius: 0.3rem;
+        font-family: inherit;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        padding: 0.5rem 1.5rem;
+        color: white;
+    }
+    button {
+        margin: 0 2.5rem 0 0.5rem;
+        color: white;
+        background-color: $divColor;
+        border-radius: 0.3rem;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    button:hover {
+        background-color: $hoverColor;
+        cursor: pointer;
+    }
+    
 }
 
 
