@@ -8,6 +8,20 @@ $hoverColor: rgb(42, 54, 216);
     justify-content: center;
 }
 
+@mixin buttons($color) {
+    button {
+        color: white;
+        background-color: $color;
+        border-radius: 0.3rem;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+      button:hover {
+        background-color: $hoverColor;
+        cursor: pointer;
+      }
+}
+
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
@@ -42,6 +56,7 @@ code {
     @include flex(row);
     flex-wrap: wrap;
     align-items: center;
+    margin: 0 5rem;
 }
 
 .movie {
@@ -51,7 +66,7 @@ code {
     background: $divColor;
     color: $textColor;
     position: relative;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
   img {
     max-width: 100%;
@@ -60,7 +75,7 @@ code {
   .movie-info {
     position: absolute;
     background-color: black;
-    animation: fadeOut 1s;
+    animation: fadeOut 0.5s;
     display: none;
   }
   .rating {
@@ -92,7 +107,7 @@ code {
     padding: 1rem;
     display: block;
     border-radius: 0.3rem;
-    animation: fadeIn 2s;
+    animation: fadeIn 0.75s;
     .hide-info-btn {
         background-color: $divColor;
         color: white;
@@ -123,23 +138,9 @@ code {
 }
 
 .select-button {
-    margin: 0 2rem;
-    button {
-      color: white;
-      background-color: $divColor;
-      border-radius: 0.3rem;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-    }
-    button:hover {
-      background-color: $hoverColor;
-      cursor: pointer;
-    }
+    margin: 0 1rem;
+    @include buttons($divColor)
   }
-  
-.select-button:first-child {
-margin-left: 0;
-}
 
 #select-category {
     list-style: none;
@@ -160,7 +161,7 @@ margin-left: 0;
     button {
         margin: 0 2.5rem 0 0.5rem;
         color: white;
-        background-color: $divColor;
+        background-color: rgb(93, 97, 107);
         border-radius: 0.3rem;
         padding: 1rem 2rem;
         font-size: 1rem;
@@ -172,6 +173,150 @@ margin-left: 0;
     
 }
 
+.toggle-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    .bar {
+        height: 3px;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+    }
+}
 
+.pages {
+    @include flex(row);
+    gap: 1rem;
+    margin: 2rem 10rem;
+    @include buttons(rgb(93, 97, 107));
+}
 
+@media only screen and (min-width: 1300px) {
+    .select-button:first-child {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .nav {
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    #search-form {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        max-width: 100%;
+        input {
+            font-size: 1rem;
+            margin: 1rem 0.25rem;
+        }
+        button {
+            padding: 0.25rem 0.5rem;
+            font-size: 1rem;
+            margin: 1rem 0.25rem;
+        }
+    }
+
+    .toggle-button {
+        display: flex;
+        margin: 0.5rem 0;
+    }
+
+    .select-button {
+        button {
+            background-color: transparent;
+            border: none;
+        }
+        button:hover {
+            background-color: transparent;
+        }
+    }
+
+    .category-links {
+        display: none; 
+    }
+
+    .category-links-active {
+        display: none; 
+        width: 100%;
+        ul {
+            
+            width: 100%;
+            flex-direction: column;
+        }
+        li {
+            text-align: center;
+        }
+        li:hover {
+            background-color: #555;
+        }
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #select-category {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .category-links ul li {
+        justify-content: flex-end;
+        padding: .5rem 1rem;
+    }
+
+    .category-links-active {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .movie {
+        margin: 1rem 0;
+        font-size: 0.65rem;
+    }
+    #search-form {
+        input {
+            font-size: 0.85rem;
+            margin: 1.5rem 0.25rem;
+        }
+        button {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
+            margin: 1.5rem 0.25rem;
+        }
+    }
+    .toggle-button {
+        top: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #search-form {
+        margin-right: 0;
+        input {
+            font-size: 0.60rem;
+            margin: 1.5rem 0.25rem;
+        }
+        button {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.60rem;
+            margin: 1.5rem 0.25rem;
+        }
+    }   
+    .toggle-button {
+        top: 1.25rem;
+    }
+}
 

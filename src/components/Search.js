@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Search = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${process.env.REACT_APP_MOVIES_API}&query=${searchTerm}`;
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    searchTerm && props.update(SEARCH_API);
+    e.preventDefault();
+  };
+
   return (
     <>
-      <p>{props.onSearch}</p>
-      <form id="search-form" onSubmit={props.submit}>
+      <form id="search-form" onSubmit={handleSubmit}>
         <input
           placeholder="Search Movies.."
           type="text"
-          value={props.searchQuery}
-          onChange={props.change}
+          value={searchTerm}
+          onChange={handleChange}
         />
         <button type="submit">Search</button>
       </form>
