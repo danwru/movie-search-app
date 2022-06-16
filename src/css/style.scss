@@ -2,15 +2,19 @@
 @import './movie';
 @import './nav';
 
-body {
-    background: rgb(10, 0, 56);
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+html {
+    overflow-x: hidden;
+    body {
+        background: rgb(10, 0, 56);
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 }
 
 .movies {
@@ -40,7 +44,9 @@ body {
     @include buttons(rgb(93, 97, 107));
 }
 
-@media only screen and (max-width: 1300px) {
+
+
+@media (max-width: 1300px) {
     .nav {
         @include flex(column, center);
         align-items: flex-start;
@@ -55,10 +61,8 @@ body {
             width: 100%;
         }
         #search-form {
-            @include flex(row, center);
-            margin: auto;
-            max-width: 100%;
             @include searchMobile(1rem);
+            margin: auto;
         }
     }
 
@@ -93,14 +97,19 @@ body {
     }
 }
 
-@media only screen and (max-width: 450px) {
+@media (max-width: 450px) {
     .movie {
         margin: 1rem 0;
         font-size: 0.65rem;
     }
-    #search-form {
-        @include searchMobile(0.75rem);
+    .nav {
+        #search-form {
+            @include searchMobile(0.70rem);
+        }
     }
+    
 }
+
+
 
 
