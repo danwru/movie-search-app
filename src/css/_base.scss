@@ -1,0 +1,40 @@
+$divColor: rgb(82, 92, 223);
+$textColor: white;
+$hoverColor: rgb(42, 54, 216);
+
+@mixin flex($direction, $justify-content) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+}
+
+@mixin buttons($color) {
+    button {
+        color: white;
+        background-color: $color;
+        border-radius: 0.3rem;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        &:hover {
+            background-color: $hoverColor;
+            cursor: pointer;
+        }
+      }
+}
+
+@mixin searchMobile($font-size) {
+    input {
+        font-size: $font-size;
+        margin: 1.5rem 0.25rem;
+    }
+    button {
+        padding: 0.25rem 0.5rem;
+        font-size: $font-size;
+        margin: 1.5rem 0.25rem;
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

@@ -13,7 +13,7 @@ const Movie = (props) => {
   return (
     <div className="movie">
       <button onClick={handleInfoClick} className="info-btn">
-        i
+        <img src="/info-icon.png" alt="" />
       </button>
       <div className={style}>
         <button onClick={handleHideClick} className="hide-info-btn">
@@ -29,7 +29,7 @@ const Movie = (props) => {
         }
         alt={props.title}
       />
-      <div className="title-sec">
+      <div className="title-div">
         <h3>{props.title}</h3>
         <p className="rating">{props.vote_average}</p>
       </div>
