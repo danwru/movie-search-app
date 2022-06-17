@@ -13,7 +13,7 @@ const Movie = (props) => {
   const setRatingColor = (vote) => {
     if (vote >= 7.5) {
       return "green";
-    } else if ((vote) => 6) {
+    } else if (vote >= 6) {
       return "yellow";
     } else {
       return "red";
@@ -41,11 +41,12 @@ const Movie = (props) => {
       />
       <div className="title-div">
         <h3>{props.title}</h3>
-        <p>
+        <div className="star-rating">
+          <img className="star" src="/star.png" alt="" />
           <span className={`rating ${setRatingColor(props.vote_average)}`}>
             {props.vote_average}
           </span>
-        </p>
+        </div>
       </div>
     </div>
   );

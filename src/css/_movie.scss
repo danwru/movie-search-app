@@ -58,10 +58,22 @@
     .title-div {
         @include flex(row, space-between);
         padding: 0 1rem;
+        h3 {
+            font-size: 1rem;
+            padding-right: 2rem;
+        }
+        .star-rating {
+            @include flex(row, center);
+            align-items: center;
+        }
+        .star {
+            width: 1rem;
+        }
         .rating {
-            background-color: #2b2e58;
+            //background-color: #2b2e58;
             border-radius: 0.3rem;
             padding: 0.5rem;
+            font-size: 1rem;
             font-weight: bold;
             &.green {
                 color: rgb(1, 203, 1);
@@ -69,8 +81,8 @@
             &.yellow {
                 color: rgb(255, 221, 0);
             }
-            &.rating.red {
-                color: red;  
+            &.red {
+                color: rgb(227, 1, 1);  
             }
         }
     }

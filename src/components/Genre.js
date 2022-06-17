@@ -13,7 +13,6 @@ const Genre = (props) => {
     const response = await fetch(API_URL);
     const jsonData = await response.json();
     setGenreList(jsonData.genres);
-    console.log(jsonData.genres);
     if (!response.ok) {
       throw new Error(`HTTP error status: ${response.status}`);
     }
