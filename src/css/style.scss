@@ -30,21 +30,57 @@ html {
 
 .nav {
     @extend .nav;
+    box-shadow: rgba(107, 0, 68, 0.4) 0px 5px, rgba(107, 0, 68, 0.3) 0px 10px, rgba(107, 0, 68, 0.2) 0px 15px, rgba(107, 0, 68, 0.1) 0px 20px, rgba(107, 0, 68, 0.05) 0px 25px;
 }
 
 .category-button {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
     @include buttons($divColor);
   }
 
 .pages {
     @include flex(row, center);
-    gap: 1rem;
+    gap: 0.5rem;
     margin: 2rem 10rem;
     @include buttons(rgb(93, 97, 107));
 }
 
+.temp-loading {
+    text-align: center;
+    color: white;
+}
 
+.dropdown {
+    position: relative;
+    z-index: 1; 
+    @include buttons($divColor);
+}
+
+.dropdown-menu {
+    @include buttons($divColor);
+    button {
+        display: block;
+        padding: 0.25rem 2rem;
+        width: 100%;
+        background: transparent;
+    }
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: black;
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.dropdown > .link:focus + .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
 @media (max-width: 1300px) {
     .nav {
@@ -87,6 +123,8 @@ html {
                 background-color: #555;
             }
             button {
+                display: block;
+                width: 100%;
                 background-color: transparent;
                 border: none;
                 &:hover {
@@ -107,9 +145,6 @@ html {
             @include searchMobile(0.70rem);
         }
     }
-    
 }
-
-
 
 

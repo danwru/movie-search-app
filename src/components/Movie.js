@@ -10,6 +10,16 @@ const Movie = (props) => {
     setStyle("movie-info");
   };
 
+  const setRatingColor = (vote) => {
+    if (vote >= 7.5) {
+      return "green";
+    } else if ((vote) => 6) {
+      return "yellow";
+    } else {
+      return "red";
+    }
+  };
+
   return (
     <div className="movie">
       <button onClick={handleInfoClick} className="info-btn">
@@ -31,7 +41,11 @@ const Movie = (props) => {
       />
       <div className="title-div">
         <h3>{props.title}</h3>
-        <p className="rating">{props.vote_average}</p>
+        <p>
+          <span className={`rating ${setRatingColor(props.vote_average)}`}>
+            {props.vote_average}
+          </span>
+        </p>
       </div>
     </div>
   );

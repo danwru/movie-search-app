@@ -33,7 +33,9 @@ const CategorySelect = (props) => {
               </button>
             </li>
           ))}
-          <Genre />
+          <li className="category-button">
+            <Genre updateMovies={props.update} />
+          </li>
         </ul>
       </div>
     </>

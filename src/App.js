@@ -8,21 +8,23 @@ import "./css/style.css";
 function App() {
   const [movies, setMovies] = useState([]);
   const [category, setCategory] = useState(["popular"]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_MOVIES_API}&page=1`;
     getMoviesReq(POPULAR_API);
   }, []); // only called on the first render/mount
 
-  // fetch popular movies from API
+  // fetch movies from API
   const getMoviesReq = async (API_URL) => {
+    setIsLoading(true);
     const response = await fetch(API_URL); // async func paused until request completes then response assigned object
     const jsonData = await response.json(); // extract json object from fetch response
     setMovies(jsonData.results);
-    setLoading(true);
+    setIsLoading(false);
     // error handling
     if (!response.ok) {
+      setIsLoading(false);
       throw new Error(`HTTP error status: ${response.status}`);
     }
   };
@@ -43,10 +45,12 @@ function App() {
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
+        <h1 className="temp-loading">Loading..</h1>
+      ) : (
         <div className="app">
           <div className="nav">
-            <CategorySelect select={handleSelect} />
+            <CategorySelect select={handleSelect} update={getMoviesReq} />
             <Search update={getMoviesReq} />
           </div>
           <div className="movies">
@@ -55,8 +59,6 @@ function App() {
           </div>
           <Pages updatePage={handlePage} />
         </div>
-      ) : (
-        <h1>Loading..</h1>
       )}
     </>
   );
