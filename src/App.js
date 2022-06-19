@@ -10,6 +10,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [category, setCategory] = useState(["popular"]);
   const [isLoading, setIsLoading] = useState(false);
+  const [starred, setStarred] = useState([]);
 
   useEffect(() => {
     const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_MOVIES_API}&page=1`;
@@ -35,9 +36,15 @@ function App() {
   };
 
   const handleSelect = (e) => {
-    setCategory(e.target.value);
-    const API_URL = `https://api.themoviedb.org/3/movie/${e.target.value}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US&page=1`;
-    getMoviesReq(API_URL);
+    if (e.target.value === "watchlist") {
+      setMovies(starred);
+      console.log(movies);
+    }
+    if (e.target.value !== "watchlist" && e.target) {
+      setCategory(e.target.value);
+      const API_URL = `https://api.themoviedb.org/3/movie/${e.target.value}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US&page=1`;
+      getMoviesReq(API_URL);
+    }
   };
 
   const handlePage = (e) => {
@@ -48,33 +55,42 @@ function App() {
     }
   };
 
+  const getMovieById = async (API_URL) => {
+    const response = await fetch(API_URL); // async func paused until request completes then response assigned object
+    const jsonData = await response.json(); // extract json object from fetch response
+    setStarred(...starred, [jsonData]);
+  };
+
+  const handleStar = (e) => {
+    const MOVIE_API = `https://api.themoviedb.org/3/movie/${e.target.value}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US`;
+    getMovieById(MOVIE_API);
+  };
+
   return (
     <>
+      <div className="nav">
+        <CategorySelect select={handleSelect} update={getMoviesReq} />
+        <Search update={getMoviesReq} />
+      </div>
       {isLoading ? (
         <>
-          <div className="nav">
-            <CategorySelect select={handleSelect} update={getMoviesReq} />
-            <Search update={getMoviesReq} />
-          </div>
           <div className="temp-loading">
             <Spinner fill="white" />
           </div>
         </>
       ) : (
-        <div className="app">
-          <div className="nav">
-            <CategorySelect select={handleSelect} update={getMoviesReq} />
-            <Search update={getMoviesReq} />
-          </div>
+        <>
           <div className="movies">
             {movies.length > 0 &&
-              movies.map((movie) => <Movie key={movie.id} {...movie} />)}
-            {movies.length === 0 && (
+              movies.map((movie) => (
+                <Movie save={handleStar} key={movie.id} {...movie} />
+              ))}
+            {movies.length === 0 && !isLoading && (
               <div className="no-results">No movies found.</div>
             )}
           </div>
           {movies.length > 0 && <Pages updatePage={handlePage} />}
-        </div>
+        </>
       )}
     </>
   );

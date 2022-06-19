@@ -64,6 +64,7 @@ html {
 .no-results {
     font-size: 2rem;
     color: white;
+    margin-top: 2rem;
 }
 
 .dropdown {
@@ -84,12 +85,13 @@ html {
     left: 0;
     top: 100%;
     background-color: black;
-    padding: .75rem;
+    width: 100%;
     border-radius: .25rem;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    
 }
 
 .dropdown > .link:focus + .dropdown-menu {
@@ -160,10 +162,11 @@ html {
         margin: 1rem 0;
         font-size: 0.65rem;
     }
-    .nav {
-        #search-form {
-            @include searchMobile(0.70rem);
-        }
+    .nav > #search-form {
+        @include searchMobile(0.70rem);
+    }
+    .dropdown-menu > button {
+        padding: 0.75rem 0;
     }
 }
 

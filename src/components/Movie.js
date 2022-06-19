@@ -25,6 +25,9 @@ const Movie = (props) => {
       <button onClick={handleInfoClick} className="info-btn">
         <img src="/info-icon.png" alt="" />
       </button>
+      <button onClick={props.save} value={props.id} className="save-movie">
+        +
+      </button>
       <div className={style}>
         <button onClick={handleHideClick} className="hide-info-btn">
           Hide

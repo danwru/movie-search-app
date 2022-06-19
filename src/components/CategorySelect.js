@@ -15,6 +15,7 @@ const CategorySelect = (props) => {
     { id: 2, value: "top_rated", display: "Top Rated" },
     { id: 3, value: "popular", display: "Popular" },
     { id: 4, value: "upcoming", display: "Upcoming" },
+    { id: 5, value: "watchlist", display: "Watchlist" },
   ];
 
   return (

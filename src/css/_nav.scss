@@ -2,6 +2,7 @@
     @include flex(row, space-between);
     padding: 0.5rem;
     background-color: rgb(5, 0, 29);
+    background-image: linear-gradient(to right, rgb(5, 0, 29), rgb(0, 8, 90));
     margin-bottom: 2rem;
     .mobile-toggle-btn {
         position: absolute;
