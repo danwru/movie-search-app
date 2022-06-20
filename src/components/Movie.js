@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Movie = (props) => {
   const [style, setStyle] = useState("movie-info");
+  const [isSaved, setIsSaved] = useState(false);
   const handleInfoClick = () => {
     setStyle("movie-info-show");
   };
@@ -20,13 +21,23 @@ const Movie = (props) => {
     }
   };
 
+  const handleSaveClick = (e) => {
+    if (!isSaved) {
+      props.save(e);
+      setIsSaved(true);
+    } else {
+      props.removeSave(e);
+      setIsSaved(false);
+    }
+  };
+
   return (
     <div className="movie">
       <button onClick={handleInfoClick} className="info-btn">
         <img src="/info-icon.png" alt="" />
       </button>
-      <button onClick={props.save} value={props.id} className="save-movie">
-        +
+      <button onClick={handleSaveClick} value={props.id} className="save-movie">
+        {isSaved ? "x" : "+"}
       </button>
       <div className={style}>
         <button onClick={handleHideClick} className="hide-info-btn">

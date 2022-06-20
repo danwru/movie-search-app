@@ -8,7 +8,7 @@ import { ReactComponent as Spinner } from "./assets/180-ring-with-bg.svg";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [category, setCategory] = useState(["popular"]);
+  const [category, setCategory] = useState("popular");
   const [isLoading, setIsLoading] = useState(false);
   const [starred, setStarred] = useState([]);
 
@@ -37,8 +37,8 @@ function App() {
 
   const handleSelect = (e) => {
     if (e.target.value === "watchlist") {
+      setCategory("Your Watchlist");
       setMovies(starred);
-      console.log(movies);
     }
     if (e.target.value !== "watchlist" && e.target) {
       setCategory(e.target.value);
@@ -58,12 +58,27 @@ function App() {
   const getMovieById = async (API_URL) => {
     const response = await fetch(API_URL); // async func paused until request completes then response assigned object
     const jsonData = await response.json(); // extract json object from fetch response
-    setStarred(...starred, [jsonData]);
+    setStarred((starred) => [...starred, jsonData]);
+
+    if (!response.ok) {
+      setIsLoading(false);
+      throw new Error(`HTTP error status: ${response.status}`);
+    }
   };
 
   const handleStar = (e) => {
     const MOVIE_API = `https://api.themoviedb.org/3/movie/${e.target.value}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US`;
     getMovieById(MOVIE_API);
+  };
+
+  const handleRemoveStar = (e) => {
+    e.preventDefault();
+    const filter = starred.filter(
+      (movie) => parseInt(movie.id) !== parseInt(e.target.value)
+    );
+    setStarred(filter);
+    console.log(filter);
+    setMovies(filter);
   };
 
   return (
@@ -80,16 +95,26 @@ function App() {
         </>
       ) : (
         <>
+          <h2 className="category-title">
+            {category.charAt(0).toUpperCase() + category.slice(1)} Movies
+          </h2>
           <div className="movies">
             {movies.length > 0 &&
               movies.map((movie) => (
-                <Movie save={handleStar} key={movie.id} {...movie} />
+                <Movie
+                  save={handleStar}
+                  removeSave={handleRemoveStar}
+                  key={movie.id}
+                  {...movie}
+                />
               ))}
             {movies.length === 0 && !isLoading && (
               <div className="no-results">No movies found.</div>
             )}
           </div>
-          {movies.length > 0 && <Pages updatePage={handlePage} />}
+          {movies.length > 0 && category !== "Your Watchlist" && (
+            <Pages updatePage={handlePage} />
+          )}
         </>
       )}
     </>
