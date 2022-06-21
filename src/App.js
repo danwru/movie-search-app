@@ -36,11 +36,11 @@ function App() {
   };
 
   const handleSelect = (e) => {
-    if (e.target.value === "watchlist") {
-      setCategory("Your Watchlist");
+    if (e.target.value === "saved") {
+      setCategory(e.target.value);
       setMovies(starred);
     }
-    if (e.target.value !== "watchlist" && e.target) {
+    if (e.target.value !== "saved" && e.target) {
       setCategory(e.target.value);
       const API_URL = `https://api.themoviedb.org/3/movie/${e.target.value}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US&page=1`;
       getMoviesReq(API_URL);
@@ -77,8 +77,23 @@ function App() {
       (movie) => parseInt(movie.id) !== parseInt(e.target.value)
     );
     setStarred(filter);
-    console.log(filter);
-    setMovies(filter);
+    if (category === "saved") {
+      setMovies(filter);
+    }
+  };
+
+  const formatCategoryTitle = () => {
+    if (!category.includes("_")) {
+      return category.charAt(0).toUpperCase() + category.slice(1) + " Movies";
+    }
+    return (
+      category.charAt(0).toUpperCase() +
+      category.slice(1, 3) +
+      " " +
+      category.charAt(4).toUpperCase() +
+      category.slice(5) +
+      " Movies"
+    );
   };
 
   return (
@@ -95,9 +110,7 @@ function App() {
         </>
       ) : (
         <>
-          <h2 className="category-title">
-            {category.charAt(0).toUpperCase() + category.slice(1)} Movies
-          </h2>
+          <h2 className="category-title">{formatCategoryTitle()}</h2>
           <div className="movies">
             {movies.length > 0 &&
               movies.map((movie) => (
@@ -112,7 +125,7 @@ function App() {
               <div className="no-results">No movies found.</div>
             )}
           </div>
-          {movies.length > 0 && category !== "Your Watchlist" && (
+          {movies.length > 0 && category !== "saved" && (
             <Pages updatePage={handlePage} />
           )}
         </>

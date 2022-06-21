@@ -27,9 +27,6 @@ html {
 .movie {
     @extend .movie;
     transition: transform .2s;
-    &:hover {
-        transform: scale(1.1); 
-    }
 }
 
 .nav {
@@ -79,33 +76,20 @@ html {
 }
 
 .dropdown-menu {
-    @include buttons($divColor);
-    button {
-        display: block;
-        padding: 0.25rem 2rem;
-        width: 100%;
-        background: transparent;
+    display: none;
+}
+
+@media (min-width: 1501px) {
+    .dropdown:hover > .link + .dropdown-menu {
+        display: inline;
+        @include genreNavContents();
     }
-    position: absolute;
-    left: 0;
-    top: 100%;
-    background-color: black;
-    width: 100%;
-    border-radius: .25rem;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-    
+    .dropdown-menu-active {
+        display: none;
+    }
 }
 
-.dropdown > .link:focus + .dropdown-menu {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-@media (max-width: 1350px) {
+@media (max-width: 1500px) {
     .nav {
         @include flex(column, center);
         align-items: flex-start;
@@ -159,6 +143,10 @@ html {
     .pages {
         @include flex(column, center);
         margin: 0 10rem;
+    }
+
+    .dropdown-menu-active {
+        @include genreNavContents();
     }
 }
 

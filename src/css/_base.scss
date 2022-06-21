@@ -34,6 +34,22 @@ $hoverColor: rgb(42, 54, 216);
     }
 }
 
+@mixin genreNavContents() {
+    @include buttons($divColor);
+    button {
+        display: block;
+        padding: 0.25rem 2rem;
+        width: 100%;
+        background: transparent;
+    }
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: black;
+    width: 100%;
+    border-radius: .25rem;
+}
+
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }

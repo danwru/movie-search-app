@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const Genre = (props) => {
   const [genreList, setGenreList] = useState([]);
+  const [genreNav, setGenreNav] = useState("dropdown-menu");
 
   useEffect(() => {
     const GENRE_LIST_API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US`;
@@ -23,10 +24,18 @@ const Genre = (props) => {
     props.updateMovies(GENRE_API);
   };
 
+  const handleToggle = () => {
+    genreNav === "dropdown-menu"
+      ? setGenreNav("dropdown-menu-active")
+      : setGenreNav("dropdown-menu");
+  };
+
   return (
     <div className="dropdown">
-      <button className="link">Browse by Genre</button>
-      <div className="dropdown-menu">
+      <button className="link" onClick={handleToggle}>
+        Browse by Genre
+      </button>
+      <div className={genreNav}>
         {genreList.length > 0 &&
           genreList.map((genre) => (
             <button
