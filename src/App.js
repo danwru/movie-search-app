@@ -3,6 +3,7 @@ import Movie from "./components/Movie";
 import Search from "./components/Search";
 import CategorySelect from "./components/CategorySelect";
 import Pages from "./components/Pages";
+import Header from "./components/Header";
 import "./css/style.css";
 import { ReactComponent as Spinner } from "./assets/180-ring-with-bg.svg";
 
@@ -11,6 +12,9 @@ function App() {
   const [category, setCategory] = useState("popular");
   const [isLoading, setIsLoading] = useState(false);
   const [starred, setStarred] = useState([]);
+  const [currTab, setCurrTab] = useState("select");
+  const [currSearch, setCurrSearch] = useState("");
+  const [currGenre, setCurrGenre] = useState("");
 
   useEffect(() => {
     const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_MOVIES_API}&page=1`;
@@ -82,25 +86,21 @@ function App() {
     }
   };
 
-  const formatCategoryTitle = () => {
-    if (!category.includes("_")) {
-      return category.charAt(0).toUpperCase() + category.slice(1) + " Movies";
-    }
-    return (
-      category.charAt(0).toUpperCase() +
-      category.slice(1, 3) +
-      " " +
-      category.charAt(4).toUpperCase() +
-      category.slice(5) +
-      " Movies"
-    );
-  };
-
   return (
     <>
       <div className="nav">
-        <CategorySelect select={handleSelect} update={getMoviesReq} />
-        <Search update={getMoviesReq} />
+        <CategorySelect
+          handleSelect={handleSelect}
+          update={getMoviesReq}
+          currGenre={currGenre}
+          setCurrTab={setCurrTab}
+          setCurrGenre={setCurrGenre}
+        />
+        <Search
+          update={getMoviesReq}
+          setCurrSearch={setCurrSearch}
+          setCurrTab={setCurrTab}
+        />
       </div>
       {isLoading ? (
         <>
@@ -110,12 +110,17 @@ function App() {
         </>
       ) : (
         <>
-          <h2 className="category-title">{formatCategoryTitle()}</h2>
+          <Header
+            category={category}
+            currTab={currTab}
+            currSearch={currSearch}
+            currGenre={currGenre}
+          />
           <div className="movies">
             {movies.length > 0 &&
               movies.map((movie) => (
                 <Movie
-                  save={handleStar}
+                  handleStar={handleStar}
                   removeSave={handleRemoveStar}
                   key={movie.id}
                   {...movie}

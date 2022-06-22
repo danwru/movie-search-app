@@ -20,8 +20,11 @@ const Genre = (props) => {
   };
 
   const handleGenre = (e) => {
+    handleToggle();
     const GENRE_API = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIES_API}&with_genres=${e.target.value}`;
     props.updateMovies(GENRE_API);
+    props.setCurrTab("genre");
+    props.setCurrGenre(e.target.getAttribute("data-name"));
   };
 
   const handleToggle = () => {
@@ -41,6 +44,7 @@ const Genre = (props) => {
             <button
               key={genre.id}
               value={genre.id}
+              data-name={genre.name}
               className="links"
               onClick={handleGenre}
             >

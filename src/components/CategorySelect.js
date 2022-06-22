@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Genre from "./Genre";
 
 const CategorySelect = (props) => {
@@ -9,6 +9,11 @@ const CategorySelect = (props) => {
       ? setNav("category-links")
       : setNav("category-links-active");
   };
+  useEffect(() => {
+    if (props.currGenre !== "") {
+      setNav("category-links");
+    }
+  }, [props.currGenre]);
 
   const categories = [
     { id: 1, value: "now_playing", display: "Now Playing" },
@@ -17,6 +22,12 @@ const CategorySelect = (props) => {
     { id: 4, value: "upcoming", display: "Upcoming" },
     { id: 5, value: "saved", display: "Watchlist" },
   ];
+
+  const handleSelectClick = (e) => {
+    props.handleSelect(e);
+    props.setCurrTab("select");
+    handleToggle();
+  };
 
   return (
     <>
@@ -29,13 +40,17 @@ const CategorySelect = (props) => {
         <ul id="select-category">
           {categories.map((category) => (
             <li key={category.id} className="category-button">
-              <button value={category.value} onClick={props.select}>
+              <button value={category.value} onClick={handleSelectClick}>
                 {category.display}
               </button>
             </li>
           ))}
           <li className="category-button">
-            <Genre updateMovies={props.update} />
+            <Genre
+              updateMovies={props.update}
+              setCurrTab={props.setCurrTab}
+              setCurrGenre={props.setCurrGenre}
+            />
           </li>
         </ul>
       </div>

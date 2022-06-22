@@ -23,7 +23,7 @@ const Movie = (props) => {
 
   const handleSaveClick = (e) => {
     if (!isSaved) {
-      props.save(e);
+      props.handleStar(e);
       setIsSaved(true);
     } else {
       props.removeSave(e);

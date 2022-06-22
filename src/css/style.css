@@ -338,6 +338,10 @@ html body {
   border: solid 1px #4a4a4a;
 }
 
+.pages .highlight {
+  background-color: #2a36d8;
+}
+
 .temp-loading {
   margin-top: 3rem;
   text-align: center;
@@ -525,6 +529,10 @@ html body {
     padding: 0.25rem 2rem;
     width: 100%;
     background: transparent;
+  }
+  .dropdown-menu-active button {
+    padding: 0.5rem 0;
+    border-bottom: solid 1px gray;
   }
 }
 
