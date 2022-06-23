@@ -50,10 +50,13 @@ html {
     padding: 3rem 0;
     @include buttons(rgb(93, 97, 107));
     button {
-        border: solid 1px rgb(74, 74, 74)
+        border: none;
     }
     .highlight {
         background-color: $hoverColor
+    }
+    .page-nav {
+        background-color: rgb(45, 45, 45);
     }
 }
 
@@ -144,8 +147,11 @@ html {
         }
     }
     .pages {
-        @include flex(column, center);
+        @include flex(row, center);
         margin: 0 10rem;
+        .no-highlight {
+            display: none;
+        }
     }
 
     .dropdown-menu-active {
@@ -157,13 +163,19 @@ html {
     }
 }
 
+@media (max-width: 775px) {
+    .movie {
+        width: 350px;
+    }
+}
+
 @media (max-width: 450px) {
     .movie {
         margin: 1rem 0;
         font-size: 0.65rem;
     }
     .nav > #search-form {
-        @include searchMobile(0.70rem);
+        @include searchMobile(0.65rem);
     }
     .dropdown-menu > button {
         padding: 0.75rem 0;

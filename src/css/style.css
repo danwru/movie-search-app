@@ -18,7 +18,7 @@
 
 .movie {
   margin: 1.5rem;
-  width: 300px;
+  width: 250px;
   border-radius: 0.3rem;
   background: #525cdf;
   color: white;
@@ -64,12 +64,29 @@
   position: absolute;
   color: white;
   font-size: 2rem;
+  padding: 0 0.75rem;
   background-color: black;
   opacity: 65%;
   right: 0;
 }
 
 .movie .save-movie:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.movie .remove-movie {
+  position: absolute;
+  color: white;
+  font-size: 2rem;
+  padding: 0 0.75rem;
+  background-color: #fc4545;
+  opacity: 65%;
+  right: 0;
+  border-style: none;
+}
+
+.movie .remove-movie:hover {
   opacity: 100%;
   cursor: pointer;
 }
@@ -335,11 +352,15 @@ html body {
 }
 
 .pages button {
-  border: solid 1px #4a4a4a;
+  border: none;
 }
 
 .pages .highlight {
   background-color: #2a36d8;
+}
+
+.pages .page-nav {
+  background-color: #2d2d2d;
 }
 
 .temp-loading {
@@ -496,14 +517,17 @@ html body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
     margin: 0 10rem;
+  }
+  .pages .no-highlight {
+    display: none;
   }
   .dropdown-menu-active {
     position: absolute;
@@ -536,18 +560,24 @@ html body {
   }
 }
 
+@media (max-width: 775px) {
+  .movie {
+    width: 350px;
+  }
+}
+
 @media (max-width: 450px) {
   .movie {
     margin: 1rem 0;
     font-size: 0.65rem;
   }
   .nav > #search-form input {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     margin: 1.5rem 0.25rem;
   }
   .nav > #search-form button {
     padding: 0.25rem 0.5rem;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     margin: 1.5rem 0.25rem;
   }
   .dropdown-menu > button {

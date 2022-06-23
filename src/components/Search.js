@@ -9,10 +9,13 @@ const Search = (props) => {
   };
 
   const handleSubmit = (e) => {
-    searchTerm && props.update(SEARCH_API);
-    props.setCurrTab("search");
-    props.setCurrSearch(searchTerm);
     e.preventDefault();
+    if (searchTerm) {
+      searchTerm && props.update(SEARCH_API);
+      props.setCurrTab("search");
+      props.setCurrSearch(searchTerm);
+    }
+    setSearchTerm("");
   };
 
   return (

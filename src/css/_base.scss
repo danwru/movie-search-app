@@ -50,6 +50,20 @@ $hoverColor: rgb(42, 54, 216);
     border-radius: .25rem;
 }
 
+@mixin addRemoveMovie($toggleColor) {
+    position: absolute;
+        color: white;
+        font-size: 2rem;
+        padding: 0 0.75rem;
+        background-color: $toggleColor;
+        opacity: 65%;
+        right: 0;
+        &:hover {
+            opacity: 100%;
+            cursor: pointer;
+        }
+}
+
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }

@@ -1,6 +1,6 @@
 .movie {
     margin: 1.5rem;
-    width: 300px;
+    width: 250px;
     border-radius: 0.3rem;
     background: $divColor;
     color: $textColor;
@@ -36,16 +36,12 @@
     }
 
     .save-movie {
-        position: absolute;
-        color: white;
-        font-size: 2rem;
-        background-color: black;
-        opacity: 65%;
-        right: 0;
-        &:hover {
-            opacity: 100%;
-            cursor: pointer;
-        }
+        @include addRemoveMovie(black);
+    }
+
+    .remove-movie {
+        @include addRemoveMovie(rgb(252, 69, 69));
+        border-style: none;
     }
     .movie-info-show {
         position: absolute;

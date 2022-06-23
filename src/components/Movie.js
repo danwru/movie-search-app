@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const Movie = (props) => {
-  const [style, setStyle] = useState("movie-info");
   const [isSaved, setIsSaved] = useState(false);
+  const [style, setStyle] = useState("movie-info");
   const handleInfoClick = () => {
     setStyle("movie-info-show");
   };
@@ -36,7 +36,11 @@ const Movie = (props) => {
       <button onClick={handleInfoClick} className="info-btn">
         <img src="/info-icon.png" alt="" />
       </button>
-      <button onClick={handleSaveClick} value={props.id} className="save-movie">
+      <button
+        className={isSaved ? "remove-movie" : "save-movie"}
+        onClick={handleSaveClick}
+        value={props.id}
+      >
         {isSaved ? "x" : "+"}
       </button>
       <div className={style}>
@@ -48,8 +52,9 @@ const Movie = (props) => {
       </div>
       <img
         src={
-          props.poster_path &&
-          "https://image.tmdb.org/t/p/original" + props.poster_path
+          props.poster_path
+            ? "https://image.tmdb.org/t/p/original" + props.poster_path
+            : "./stock-img.jpg"
         }
         alt={props.title}
       />

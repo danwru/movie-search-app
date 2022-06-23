@@ -15,11 +15,16 @@ function App() {
   const [currTab, setCurrTab] = useState("select");
   const [currSearch, setCurrSearch] = useState("");
   const [currGenre, setCurrGenre] = useState("");
+  const [currPage, setCurrPage] = useState(1);
 
   useEffect(() => {
     const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_MOVIES_API}&page=1`;
     getMoviesReq(POPULAR_API);
   }, []);
+
+  useEffect(() => {
+    setCurrPage(1);
+  }, [currTab]);
 
   // fetch movies from API
   const getMoviesReq = async (API_URL) => {
@@ -40,6 +45,7 @@ function App() {
   };
 
   const handleSelect = (e) => {
+    setCurrPage(1);
     if (e.target.value === "saved") {
       setCategory(e.target.value);
       setMovies(starred);
@@ -51,9 +57,9 @@ function App() {
     }
   };
 
-  const handlePage = (e) => {
+  const handlePage = (pageNum) => {
     if (category) {
-      const PAGE_API = `https://api.themoviedb.org/3/movie/${category}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US&page=${e.target.value}`;
+      const PAGE_API = `https://api.themoviedb.org/3/movie/${category}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US&page=${pageNum}`;
       getMoviesReq(PAGE_API);
       window.scrollTo(0, 0);
     }
@@ -131,7 +137,11 @@ function App() {
             )}
           </div>
           {movies.length > 0 && category !== "saved" && (
-            <Pages updatePage={handlePage} />
+            <Pages
+              updatePage={handlePage}
+              currPage={currPage}
+              setCurrPage={setCurrPage}
+            />
           )}
         </>
       )}
