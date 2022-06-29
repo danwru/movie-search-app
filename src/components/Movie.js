@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import infoIcon from "../assets/info-icon.png";
+import starIcon from "../assets/star.png";
+import stockImage from "../assets/stock-img.jpg";
 
 const Movie = (props) => {
   const [isSaved, setIsSaved] = useState(false);
@@ -34,7 +37,7 @@ const Movie = (props) => {
   return (
     <div className="movie">
       <button onClick={handleInfoClick} className="info-btn">
-        <img src="/info-icon.png" alt="" />
+        <img src={infoIcon} alt="" />
       </button>
       <button
         className={isSaved ? "remove-movie" : "save-movie"}
@@ -54,14 +57,14 @@ const Movie = (props) => {
         src={
           props.poster_path
             ? "https://image.tmdb.org/t/p/original" + props.poster_path
-            : "./stock-img.jpg"
+            : { stockImage }
         }
         alt={props.title}
       />
       <div className="title-div">
         <h3>{props.title}</h3>
         <div className="star-rating">
-          <img className="star" src="/star.png" alt="" />
+          <img className="star" src={starIcon} alt="" />
           <span className={`rating ${setRatingColor(props.vote_average)}`}>
             {props.vote_average}
           </span>

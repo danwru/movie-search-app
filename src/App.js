@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./components/Movie";
 import Search from "./components/Search";
-import CategorySelect from "./components/CategorySelect";
+import Category from "./components/Category";
 import Pages from "./components/Pages";
 import Header from "./components/Header";
-import "./css/style.css";
+import "./sass/styles.css";
 import { ReactComponent as Spinner } from "./assets/180-ring-with-bg.svg";
 
 function App() {
@@ -95,7 +95,7 @@ function App() {
   return (
     <>
       <div className="nav">
-        <CategorySelect
+        <Category
           handleSelect={handleSelect}
           update={getMoviesReq}
           currGenre={currGenre}
@@ -110,7 +110,7 @@ function App() {
       </div>
       {isLoading ? (
         <>
-          <div className="temp-loading">
+          <div className="loading-spinner">
             <Spinner fill="white" />
           </div>
         </>

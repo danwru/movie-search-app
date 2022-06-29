@@ -1,78 +1,53 @@
-@import './base';
-@import './movie';
-@import './nav';
-
-html {
-    overflow-x: hidden;
-    body {
-        background: rgb(10, 0, 56);
-        padding: 0;
-        margin: 0;
-        overflow-x: hidden;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-}
-
-.movies {
-    @include flex(row, center);
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0 5rem;
-}
-
-.movie {
-    @extend .movie;
-    transition: transform .2s;
-}
-
 .nav {
-    @extend .nav;
+    @include flex(row, space-between);
+    padding: 0.5rem;
+    background-color: rgb(5, 0, 29);
+    background-image: linear-gradient(to right, rgb(5, 0, 29), rgb(0, 8, 90));
     box-shadow: rgba(107, 0, 68, 0.4) 0px 5px, rgba(107, 0, 68, 0.3) 0px 10px, rgba(107, 0, 68, 0.2) 0px 15px, rgba(107, 0, 68, 0.1) 0px 20px, rgba(107, 0, 68, 0.05) 0px 25px;
-}
-
-.category-title {
-    color: white;
-    text-align: center;
+    margin-bottom: 2rem;
+    .mobile-toggle-btn {
+        position: absolute;
+        top: 1.5rem;
+        left: 1rem;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        .bar {
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+        }
+    }
+    #select-category {
+        list-style: none;
+        @include flex(row, center);
+    }
+    
+    #search-form {
+        input {
+            background-color: transparent;
+            border: 2px solid #b0b2d1;
+            border-radius: 0.3rem;
+            font-family: inherit;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            color: $textColor;
+        }
+        @include buttons(rgb(93, 97, 107));
+        button {
+            margin: 0 2.5rem 0 0.5rem;
+            padding: 1rem 2rem;
+        }
+    }
 }
 
 .category-button {
     margin: 0 0.5rem;
     @include buttons($divColor);
-  }
-
-.pages {
-    @include flex(row, center);
-    gap: 0.75rem;
-    padding: 3rem 0;
-    @include buttons(rgb(93, 97, 107));
-    button {
-        border: none;
-    }
-    .highlight {
-        background-color: $hoverColor
-    }
-    .page-nav {
-        background-color: rgb(45, 45, 45);
-    }
-}
-
-.temp-loading {
-    margin-top: 3rem;
-    text-align: center;
-}
-
-.test-loading {
-    transform: scale(2);
-}
-
-.no-results {
-    font-size: 2rem;
-    color: white;
-    margin-top: 2rem;
 }
 
 .dropdown {
@@ -146,13 +121,6 @@ html {
             }
         }
     }
-    .pages {
-        @include flex(row, center);
-        margin: 0 10rem;
-        .no-highlight {
-            display: none;
-        }
-    }
 
     .dropdown-menu-active {
         @include genreNavContents();
@@ -163,17 +131,7 @@ html {
     }
 }
 
-@media (max-width: 775px) {
-    .movie {
-        width: 350px;
-    }
-}
-
 @media (max-width: 450px) {
-    .movie {
-        margin: 1rem 0;
-        font-size: 0.65rem;
-    }
     .nav > #search-form {
         @include searchMobile(0.65rem);
     }
@@ -181,4 +139,3 @@ html {
         padding: 0.75rem 0;
     }
 }
-

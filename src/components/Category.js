@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Genre from "./Genre";
 
-const CategorySelect = (props) => {
+const Category = (props) => {
   const [navToggle, setNav] = useState("category-links");
 
   const handleToggle = () => {
@@ -58,4 +58,4 @@ const CategorySelect = (props) => {
   );
 };
 
-export default CategorySelect;
+export default Category;

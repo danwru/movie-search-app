@@ -24,7 +24,7 @@ const Header = (props) => {
       return props.currGenre + " Movies";
     }
   };
-  return <h2 className="category-title">{formatCategoryTitle()}</h2>;
+  return <h2 className="page-header">{formatCategoryTitle()}</h2>;
 };
 
 export default Header;

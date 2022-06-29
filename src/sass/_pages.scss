@@ -1,0 +1,25 @@
+.pages {
+    @include flex(row, center);
+    gap: 0.75rem;
+    padding: 3rem 0;
+    @include buttons(rgb(93, 97, 107));
+    button {
+        border: none;
+    }
+    .highlight {
+        background-color: $hoverColor
+    }
+    .page-nav {
+        background-color: rgb(45, 45, 45);
+    }
+}
+
+@media (max-width: 1500px) {
+    .pages {
+        @include flex(row, center);
+        margin: 0 10rem;
+        .no-highlight {
+            display: none;
+        }
+    }
+}
