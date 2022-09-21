@@ -31,6 +31,7 @@ function App() {
     setIsLoading(true);
     const response = await fetch(API_URL); // async func paused until request completes then response assigned object
     const jsonData = await response.json(); // extract json object from fetch response
+    console.log(API_URL);
     setMovies(jsonData.results);
     const timeout = (delay) => {
       return new Promise((res) => setTimeout(res, delay));
@@ -46,6 +47,7 @@ function App() {
 
   const handleSelect = (e) => {
     setCurrPage(1);
+    setCurrGenre("");
     if (e.target.value === "saved") {
       setCategory(e.target.value);
       setMovies(starred);
@@ -58,9 +60,15 @@ function App() {
   };
 
   const handlePage = (pageNum) => {
-    if (category) {
+    if (category && currGenre === "") {
       const PAGE_API = `https://api.themoviedb.org/3/movie/${category}?api_key=${process.env.REACT_APP_MOVIES_API}&language=en-US&page=${pageNum}`;
       getMoviesReq(PAGE_API);
+      window.scrollTo(0, 0);
+    }
+
+    if (currGenre !== "") {
+      const GENRE_API = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIES_API}&with_genres=${currGenre}&page=${pageNum}`;
+      getMoviesReq(GENRE_API);
       window.scrollTo(0, 0);
     }
   };

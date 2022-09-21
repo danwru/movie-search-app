@@ -12,9 +12,35 @@ html body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page-header {
+.category-header {
   color: white;
   text-align: center;
+}
+
+.watch-popup {
+  position: fixed;
+  color: white;
+  background-color: black;
+  top: 0;
+  right: 1rem;
+  padding: 2rem;
+  border-style: none;
+  border-radius: .3rem;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s 1s, opacity 1s linear;
+  transition: visibility 0s 1s, opacity 1s linear;
+}
+
+.watch-popup.show {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear;
+}
+
+.popup-title {
+  color: #fff200;
 }
 
 .loading-spinner {

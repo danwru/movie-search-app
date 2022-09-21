@@ -13,9 +13,32 @@ html {
     }
 }
 
-.page-header {
+.category-header {
     color: white;
     text-align: center;
+}
+
+.watch-popup {
+    position: fixed;
+    color: white;
+    background-color: black;
+    top: 0;
+    right: 1rem;
+    padding: 2rem;
+    border-style: none;
+    border-radius: .3rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s linear;
+    &.show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s linear;
+    }
+}
+
+.popup-title {
+    color: rgb(255, 242, 0);
 }
 
 .loading-spinner {

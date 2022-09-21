@@ -5,6 +5,8 @@ import stockImage from "../assets/stock-img.jpg";
 
 const Movie = (props) => {
   const [isSaved, setIsSaved] = useState(false);
+  const [addPopup, setAddPopup] = useState(false);
+  const [removePopup, setRemovePopup] = useState(false);
   const [style, setStyle] = useState("movie-info");
   const handleInfoClick = () => {
     setStyle("movie-info-show");
@@ -28,14 +30,30 @@ const Movie = (props) => {
     if (!isSaved) {
       props.handleStar(e);
       setIsSaved(true);
+      setAddPopup(true);
+      setTimeout(() => {
+        setAddPopup(false);
+      }, 2000);
     } else {
       props.removeSave(e);
       setIsSaved(false);
+      setRemovePopup(true);
+      setTimeout(() => {
+        setRemovePopup(false);
+      }, 2000);
     }
   };
 
   return (
     <div className="movie">
+      <h3 className={addPopup ? "watch-popup show" : "watch-popup"}>
+        Added <span className="popup-title">{props.title}</span> to your
+        watchlist
+      </h3>
+      <h3 className={removePopup ? "watch-popup show" : "watch-popup"}>
+        Removed <span className="popup-title">{props.title}</span> from your
+        watchlist
+      </h3>
       <button onClick={handleInfoClick} className="info-btn">
         <img src={infoIcon} alt="" />
       </button>
